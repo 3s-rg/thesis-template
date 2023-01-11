@@ -15,6 +15,11 @@
 \usepackage{setspace}
 \linespread{1.5}
 \setcounter{tocdepth}{2}
+
+% Fußnote
+\usepackage[hang]{footmisc} % load before hyperref to correctly link footnote refs
+\setlength{\footnotemargin}{-0.8em}
+
 \usepackage[colorlinks=true, pdfstartview=FitV,
 linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
 \setlength{\parindent}{0pt} % No indentation between paragraphs
@@ -32,9 +37,6 @@ linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
 \usepackage{subcaption}
 \usepackage{floatpag} % to move floatpagenr to topright
 
-% Fußnote
-\usepackage[hang]{footmisc}
-\setlength{\footnotemargin}{-0.8em}
 
 \usepackage{csquotes}
 \usepackage{afterpage} % needed for empty page after front
