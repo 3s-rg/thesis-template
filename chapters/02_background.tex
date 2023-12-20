@@ -1,5 +1,4 @@
-\cleardoublepage
-\chapter{Challenges for an Edge-Based FaaS Platform}
+\section{Challenges for an Edge-Based FaaS Platform}
 \label{cha:background}
 
 We have motivated the need for FaaS at the network edge, closer to service consumers such as connected sensors and actuators.
@@ -13,7 +12,7 @@ Finally, a FaaS platform needs to scale as needed, i.e., it should have the abil
 Beyond these, edge computing comes with additional challenges that an edge FaaS platform needs to handle.
 In this section, we discuss these challenges and derive requirements.
 
-\section{Emphasizing Resource Efficiency}
+\subsection{Emphasizing Resource Efficiency}
 \label{sec:efficiency}
 
 In their capabilities, edge nodes can range from low-powered single-board computers to full data centers.
@@ -30,7 +29,7 @@ Some components such as a dedicated load balancer to distribute requests across 
 While certainly possible, scaling a FaaS platform across multiple edge locations is unlikely provide significant latency advantages over processing data and events in the cloud.
 This means that an edge-focused design of a FaaS platform should carefully consider which components are actually needed and which are not to minimize overheads.
 
-\section{Focus on IoT Applications}
+\subsection{Focus on IoT Applications}
 \label{sec:focus_on_iot}
 
 One of the features that makes traditional FaaS platform so easy to use are the variety of ``triggers'' that can be used to invoke functions.
@@ -42,7 +41,7 @@ Alternative messaging protocols such as MQTT or CoAP can help to reduce latency 
 
 Therefore, an edge FaaS platform should natively support such IoT messaging protocols yet can do without custom triggers that are only relevant for cloud applications.
 
-\section{Extensibility}
+\subsection{Extensibility}
 \label{sec:extensibility}
 
 Another challenge is the heterogeneity of edge computing nodes and applications.

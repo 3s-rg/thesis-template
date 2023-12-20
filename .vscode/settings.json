@@ -1,0 +1,6 @@
+{
+    "ltex.latex.commands": {
+        "\\crefrange{}": "dummy",
+        "\\texttt{}": "dummy",
+    }
+}

@@ -1,0 +1,2 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QWe recommend writing in Visual Studio Code using the LaTeX Workshop and LTex extensions.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QI hereby declare that the thesis submitted is my own, unaided work, completed without any unpermitted external help.\\E$"}

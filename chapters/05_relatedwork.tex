@@ -1,4 +1,4 @@
-\chapter{Related Work}
+\section{Related Work}
 \label{cha:relatedwork}
 
 While Function-as-a-Service is still a relatively new paradigm, it has found widespread interest, in particular as a cloud service.
@@ -6,19 +6,16 @@ Next to the popular AWS Lambda and Azure Functions, a number of open-source appr
 
 There are also some attempts at FaaS platforms for the edge.
 OpenWhisk for example has Lean OpenWhisk as a deployment option that removes a lot of resource-intensive components such as a Kafka queue, that are needed to scale across multiple nodes~\cite{Breitgand2018-fs}.
-Amazon and Microsoft have also already started bringing their FaaS platforms closer to the edge of the network with AWS Greengrass\footnote{https://aws.amazon.com/greengrass} and Azure Functions on IoT Edge\footnote{https://docs.microsoft.com/azure/iot-edge}, which promise seamless integration into the respective cloud ecosystems.
+Amazon and Microsoft have also already started bringing their FaaS platforms closer to the edge of the network with AWS Greengrass\footnote{\url{https://aws.amazon.com/greengrass}} and Azure Functions on IoT Edge\footnote{\url{https://docs.microsoft.com/azure/iot-edge}}, which promise seamless integration into the respective cloud ecosystems.
 To use these services, however, developers need to render control of the edge device to the cloud service provider.
 
 Palade et al.~\cite{Palade2019-mo} have published a comparison of open-source FaaS platforms for the edge using qualitative as well as quantitative measures.
-The authors also compare OpenWhisk, yet not Lean OpenWhisk, OpenFaaS\footnote{https://www.openfaas.com/}, Kubeless, and Knative\footnote{https://knative.dev/}.
+The authors also compare OpenWhisk, yet not Lean OpenWhisk, OpenFaaS\footnote{\url{https://www.openfaas.com/}}, Kubeless, and Knative\footnote{\url{https://knative.dev/}}.
 They find that OpenWhisk has by far the worst performance of the four, especially with an increased load, while Kubeless provides the highest throughput and lowest latency across all quantitative tests.
 
 Recently, Akkus et al.~\cite{Akkus2018-gj} have published an approach for high-performance serverless computing that is similar to \textit{tinyFaaS} conceptually.
 To allow for quicker communication between functions and limit the overhead of Docker, their system allows for concurrent execution of functions within a single container and grouping applications that consist of several functions.
 With their approach, they were able to achieve a 43\% speedup compared to OpenWhisk whereas our results showed improvements of at least 2,000\%.
-
-Beyond these related research efforts, Hussain et al.~\cite{Hussain2019-mj}, Cicconetti et al.~\cite{Cicconetti2018-hw}, Baresi et al.~\cite{Baresi2017-jg}, Nastic et al.~\cite{Nastic2018-ec}, and more have all described more general serverless frameworks for the edge but they do not directly address lightweight FaaS platform for edge computing environments.
-These approaches, hence, seem incompatible with installation on low power edge devices.
 
 Rausch et al.~\cite{Rausch2019-eo} propose and implement a serverless platform for AI applications at the edge that combines placing execution on edge nodes and handling data in a locality-aware manner.
 Data such as AI models can be pulled from the cloud or another edge node, while the serverless platform abstracts from any data management by providing data proxies.
@@ -31,9 +28,9 @@ Instead of using Docker containers, Shillaker's approach is to use language runt
 Building on top of that function runtime, they also propose improving on the relatively simple existing FaaS platform schedulers with a custom one that considers resource sharing within the runtime.
 And, finally, the author aims to introduce state management into their serverless platform, which they suggest can broaden its application areas as also hinted at by Hellerstein et al.~\cite{paper_hellerstein_serverless}.
 
-Similarly, Hall et al.~\cite{Hall2019-im} argue that containers are not fit for serverless at the edge, as they introduce unnecessary delays during container startup, and their nonmalleable resource assignments hinder efficient resource usage.
+Similarly, Hall et al.~\cite{Hall2019-im} argue that containers are not fit for serverless at the edge, as they introduce unnecessary delays during container startup, and their non-malleable resource assignments hinder efficient resource usage.
 Their solution is to use a WebAssembly runtime instead, which can also provide both sandboxing, memory safety, and interoperability.
-Currently the WebAssembly approach can remedy cold-start overheads but performance is worse than in OpenWhisk.
+Currently, the WebAssembly approach can remedy cold-start overheads, but performance is worse than in OpenWhisk.
 
 Karhula et al.~\cite{Karhula2019-en} describe an edge FaaS platform based on Docker that allows for checkpointing of functions, pausing the execution of a function, and taking a snapshot of the container at a particular instance in time.
 This enables pausing long-running or blocking functions when resources are needed, backing up functions in case of failures, and even for container state migration across different platform nodes.

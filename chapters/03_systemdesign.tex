@@ -1,23 +1,23 @@
-\chapter{System Design}
+\section{System Design}
 \label{cha:systemdesign}
 
-Based on the requirements for FaaS platforms on the edge that we identified in Chapter~\ref{cha:background}, we have developed \textit{tinyFaaS}, a FaaS platform that is built from the ground up for edge environments.
+Based on the requirements for FaaS platforms on the edge that we identified in \cref{cha:background}, we have developed \textit{tinyFaaS}, a FaaS platform that is built from the ground up for edge environments.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.66\columnwidth]{fig/architecture.pdf}
-  \caption{\textit{tinyFaaS} Architecture}
-	\label{fig:systemdesign}
+    \centering
+    \includegraphics[width=0.66\columnwidth]{fig/architecture.pdf}
+    \caption{\textit{tinyFaaS} Architecture}
+    \label{fig:systemdesign}
 \end{figure}
 
-In this section we will present the architecture of \textit{tinyFaaS}, which is shown in Figure \ref{fig:systemdesign}.
+In this section we will present the architecture of \textit{tinyFaaS}, which is shown in \cref{fig:systemdesign}.
 Its main components are a reverse proxy that acts as a CoAP proxy and load balancer, function handlers that execute the application code, and a management service to supervise the other components.
 
 As each of these components communicates using standard web protocols, they are easily interchangeable as well, which further increases extensibility.
 For example, the reverse proxy, which accepts incoming CoAP connections, could easily be replaced with an HTTP proxy for less latency-sensitive applications or to integrate it into legacy systems.
 While \textit{tinyFaaS} is designed to run on a single node, it is also possible to integrate multiple nodes in a common middleware or through an external load balancer by extending the management service or reverse proxy.
 
-\section{Reverse Proxy}
+\subsection{Reverse Proxy}
 \label{sec:reverseproxy}
 
 The reverse proxy accepts incoming CoAP connections and proxies them to the function handlers.
@@ -25,7 +25,7 @@ For each function, a CoAP resource is registered in the reverse proxy and reques
 When a message reaches the CoAP endpoint, the reverse proxy selects one of the function handlers to process this request.
 The reverse proxy then sends an HTTP request, possibly with some meta-information or data, to the HTTP proxy in the selected function handler.
 
-As we have discussed in Section~\ref{sec:focus_on_iot}, a FaaS platform for the edge should natively support messaging protocols that are used for machine-to-machine communication and fit the IoT use case as well.
+As we have discussed in \cref{sec:focus_on_iot}, a FaaS platform for the edge should natively support messaging protocols that are used for machine-to-machine communication and fit the IoT use case as well.
 We decided to use CoAP as the messaging protocol for \textit{tinyFaaS} for several reasons.
 First, CoAP, which is short for \textit{Constrained Application Protocol} follows the client/server paradigm in the style of HTTP, compared to the publish/subscribe approach that MQTT takes.
 This fits our use case as we expect clients such as IoT devices to send requests to the server that hosts \textit{tinyFaaS} without the need for a common message broker.
@@ -36,20 +36,20 @@ As TCP is connection-oriented, it introduces a lot of overhead; UDP, in contrast
 This not only greatly reduces how much processing is needed for each CoAP packet but also reduces network bandwidth usage~\cite{Laaroussi2018-fk,Naik2017-cn}.
 
 
-\section{Function Handlers}
+\subsection{Function Handlers}
 \label{sec:handlers}
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.66\columnwidth]{fig/functionhandler.pdf}
-	\caption{Components of the Function Handler}
-	\label{fig:functionhandlers}
+    \centering
+    \includegraphics[width=0.66\columnwidth]{fig/functionhandler.pdf}
+    \caption{Components of the Function Handler}
+    \label{fig:functionhandlers}
 \end{figure}
 
 The function handlers are the main part of \textit{tinyFaaS}.
 Each function handler is a separate Docker container.
 This container contains both a runtime for the programming language that the function is written in and some boilerplate code to facilitate calling it from the reverse proxy.
-As shown in Figure \ref{fig:functionhandlers}, the container also includes an HTTP server that accepts incoming requests from the reverse proxy, executes the function with the data provided by the request and returns a result.
+As shown in \cref{fig:functionhandlers}, the container also includes an HTTP server that accepts incoming requests from the reverse proxy, executes the function with the data provided by the request and returns a result.
 While the reverse proxy uses CoAP for external communication, HTTP is used internally within \textit{tinyFaaS}.
 Using an HTTP server for communication between the reverse proxy and the function handlers makes it very simple to add new function runtimes, as most modern runtimes support some form of HTTP server out of the box with standard libraries, which is not necessarily the case for CoAP.
 Using HTTP here, therefore, improves extensibility.
@@ -76,13 +76,13 @@ This ensures that no maliciously acting function can interfere with other functi
 
 While Docker containers only introduce a small performance penalty, they dramatically simplify deployment of functions as the corresponding handlers and dedicated virtual networks can easily be created in an isolated fashion by the management service.
 
-\section{Management Service}
+\subsection{Management Service}
 \label{sec:management}
 
 The management service is responsible for creating new functions within the platform.
 Developers who want to deploy a new function can send it the management service' HTTP endpoint.
 The service then creates the containers for the function handlers, registers a CoAP resource in the reverse proxy, and connects all handlers with the reverse proxy on a Docker virtual network so that they can communicate.
-In a similar manner, functions may also be updated or deleted.
+Similarly, functions may also be updated or deleted.
 This allows functions on \textit{tinyFaaS} to be reconfigured at runtime, which is a key feature of FaaS platforms.
 
 Furthermore, having a single point of entry also enables multi-tenancy as the management service can take care of user authentication when creating or modifying functions.

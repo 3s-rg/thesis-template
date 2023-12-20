@@ -1,13 +1,10 @@
-# Top Thesis Tips
+# TU Berlin Thesis Template
 
-A short, incomplete list of hints to help you write your Bachelor's/Master's thesis at MCC.
+This thesis template is intended to get students writing their theses at the Mobile Cloud Computing chair of Technische Universität Berlin up to speed.
+Using LaTeX to typeset your thesis is a crucial step you can take to reduce headaches at the last minute and will make your life very comfortable (or at least as comfortable as someone writing their thesis can be...).
+You can use this template as-is for your thesis as we distribute it with a permissible MIT license.
+The original template was provided by Felix Moebius, and we have extended it for use by all students.
+The content of our template is only for illustrative purposes and does not necessarily reflect the necessary content, detail, structure, or length of a Master's or Bachelor's thesis!
 
-- it's called "Bachelor's Thesis" or "Master's Thesis" (not "Masters Thesis", "Master Thesis", "Masterthesis", etc.)
-- use the [Oxford comma](https://www.grammarly.com/blog/what-is-the-oxford-comma-and-why-do-people-care-so-much-about-it/)
-- use American spelling (e.g. "analyze" instead of "analyse")
-- always cite your sources properly (including figures!), never copy text!
-- use reputable sources (ACM, most IEEE publications, Elsevier/Wiley)
-- use our [LaTeX template](https://github.com/pfandzelter/TU-Thesis-Template) to get up to speed quickly
-- avoid weasel words and using too much passive voice (you can use our [proof tool](https://github.com/pfandzelter/proof) to check your text)
-- use "we" instead of "I" (weird at first but you'll get used to it)
-- read [this post by Prof. Leitner](https://philippleitner.medium.com/some-frequent-writing-tips-i-give-software-engineering-thesis-students-da2acab30381)
+We recommend writing in [Visual Studio Code](https://code.visualstudio.com/) using the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) and [LTex](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) extensions.
+For help writing the content of your thesis, please refer to our [thesis tips](https://github.com/pfandzelter/thesis-tips).
