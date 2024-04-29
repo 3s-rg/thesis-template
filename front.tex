@@ -64,9 +64,27 @@
 \clearpage
 
 \vspace*{\fill}
-\noindent
-I hereby declare that the thesis submitted is my own, unaided work, completed without any unpermitted external help. Only the sources and resources listed were used.
-The independent and unaided completion of the thesis is affirmed by affidavit:
+{
+    % briefly set the footnote to symbols for this disclaimer
+    \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+    \noindent
+    \begin{otherlanguage}
+        {ngerman}
+        Hiermit versichere ich, dass ich die vorliegende Arbeit eigenständig ohne Hilfe Dritter und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe.
+        Alle Stellen die den benutzten Quellen und Hilfsmitteln unverändert oder sinngemäß entnommen sind, habe ich als solche kenntlich gemacht.
+
+        Sofern generische KI-Tools verwendet wurden, habe ich Produktnamen, Hersteller, die jeweils verwendete Softwareversion und die jeweiligen Einsatzzwecke (z.B.~sprachliche Überprüfung und Verbesserung der Texte, systematische Recherche) benannt.
+        Ich verantworte die Auswahl, die Übernahme und sämtliche Ergebnisse des von mir verwendeten KI-generierten Outputs vollumfänglich selbst.
+
+        Die Satzung zur Sicherung guter wissenschaftlicher Praxis an der TU Berlin vom 8. März 2017\footnote{\url{https://www.static.tu.berlin/fileadmin/www/10000060/FSC/Promotion___Habilitation/Dokumente/Grundsaetze_gute_wissenschaftliche_Praxis_2017.pdf}} habe ich zur Kenntnis genommen.
+
+        Ich erkläre weiterhin, dass ich die Arbeit in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde
+        vorgelegt habe.
+    \end{otherlanguage}
+    % reset footnote styling for the rest of the thesis
+    \renewcommand*{\thefootnote}{\arabic{footnote}}
+    \setcounter{footnote}{0}
+}
 \vskip 2cm
 \begin{tabular}{@{}p{.5in}p{4in}@{}}
      & \hrulefill \\
