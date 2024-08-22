@@ -76,25 +76,104 @@ All repetitions yielded comparable results.
 \subsection{Experiment Results}
 \label{sec:discussion}
 
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=1\columnwidth]{fig/pigraph.pdf}
+\begin{figure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-1.pdf}
+        \caption{1 Thread}
+        \label{fig:pigraph:1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-4.pdf}
+        \caption{4 Threads}
+        \label{fig:pigraph:4}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-16.pdf}
+        \caption{16 Threads}
+        \label{fig:pigraph:16}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-64.pdf}
+        \caption{64 Threads}
+        \label{fig:pigraph:64}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-256.pdf}
+        \caption{256 Threads}
+        \label{fig:pigraph:256}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-pi-1024.pdf}
+        \caption{1,024 Threads}
+        \label{fig:pigraph:1024}
+    \end{subfigure}
     \caption{Latency Measurements on Single-Board Computer}
     \label{fig:pigraph}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=1\columnwidth]{fig/awsgraph.pdf}
+\begin{figure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-1.pdf}
+        \caption{1 Thread}
+        \label{fig:awsgraph:1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-4.pdf}
+        \caption{4 Threads}
+        \label{fig:awsgraph:4}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-16.pdf}
+        \caption{16 Threads}
+        \label{fig:awsgraph:16}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-64.pdf}
+        \caption{64 Threads}
+        \label{fig:awsgraph:64}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-256.pdf}
+        \caption{256 Threads}
+        \label{fig:awsgraph:256}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{./fig/ecdf-aws-1024.pdf}
+        \caption{1,024 Threads}
+        \label{fig:awsgraph:1024}
+    \end{subfigure}
     \caption{Latency Measurements on Cloud Server}
     \label{fig:awsgraph}
-\end{figure*}
+\end{figure}
 
 In our experiments, we find that the best case average execution time for our exemplary function is 6ms on the single-board computer and 1ms on the cloud server.
 These values are taken from the test against the native Node.js implementation using a low load of one parallel request.
 For our results, we consider all operations that do not return any response and those with a response time of more than one second as failed.
 
-\textbf{Overhead of tinyFaaS:} \cref{fig:pigraph} and \cref{fig:awsgraph} show the cumulative distribution of the respective latency measurements.
+\paragraph{Overhead of tinyFaaS}
+\cref{fig:pigraph,fig:awsgraph} show the cumulative distribution of the respective latency measurements.
 Please, note that this also shows the success rate for each experiment.
 We show the measurements for \textit{tinyFaaS} along with each of the systems we compare it to, namely the native Node.js implementation, Lean OpenWhisk, and Kubeless.
 As each client thread in our benchmarking tool only sends a new request when it receives a response or the previous request times out, throughput varies across all experiments.
@@ -104,7 +183,7 @@ On average, the benchmarking client issues a load of 38 operations per second pe
 \cref{fig:pigraph} shows that performance of \textit{tinyFaaS} is comparable to the native deployment on the Raspberry Pi.
 Especially the success rates being equal shows that both scale equally well and that \textit{tinyFaaS} introduces a low to acceptable overhead.
 At small scale both perform equally well in terms of response latency.
-In fact, in our tests with 16 simultaneous client connections, \textit{tinyFaaS} outperforms by 59\%.
+In fact, in our tests with 16 simultaneous client connections (\cref{fig:pigraph:16}), \textit{tinyFaaS} outperforms by 59\%.
 We expect this to be caused by the implementation of CoAP in Node.js compared to our use of HTTP within our Node.js function handlers.
 Furthermore, using multiple function handlers could help distribute load more evenly across CPU cores which Node.js by default does not do without explicitly designing for multithreading.
 Nevertheless, for high loads the native implementation is about 40\% faster than \textit{tinyFaaS}.
@@ -113,17 +192,19 @@ Unlike the single-board computer experiments, these do not show \textit{tinyFaaS
 The reason for this might be that the cloud server has only two available CPU cores, albeit much more powerful ones, which could limit the impact of the multithreading advantage.
 On average, the native implementation is 8\% faster than \textit{tinyFaaS} for small loads and 33\% faster with a medium to high load.
 
-\textbf{tinyFaaS vs. Lean OpenWhisk:} Lean OpenWhisk on a constrained system as our Raspberry Pi is much slower than \textit{tinyFaaS} and scales considerably worse.
+\paragraph*{tinyFaaS vs. Lean OpenWhisk}
+Lean OpenWhisk on a constrained system as our Raspberry Pi is much slower than \textit{tinyFaaS} and scales considerably worse.
 Even with just a single concurrent connection Lean OpenWhisk is unable to successfully respond to about two thirds of all requests.
 In addition, the average latency for successful requests is almost 100 times as high as for \textit{tinyFaaS}.
-With 256 and 1024 client threads, Lean OpenWhisk on our single-board computer fails completely with no successful response to any request.
+With 256 and 1024 client threads (\cref{fig:awsgraph:256,fig:awsgraph:1024}), Lean OpenWhisk on our single-board computer fails completely with no successful response to any request.
 In fact, we observed that the Raspberry Pi would not accept any more input at all and needed to be reset after each test.
 We presume that the high memory usage of Lean OpenWhisk led to swapping which in turn put a high demand on the processor.
 On the cloud server, results look slightly better for small to medium loads.
 Lean OpenWhisk is able to successfully respond to all requests, albeit with a latency that is 20 times higher than that of \textit{tinyFaaS}.
 Despite that, unlike \textit{tinyFaaS}, Lean OpenWhisk is not able to scale beyond 256 client threads.
 
-\textbf{tinyFaaS vs. Kubeless:} Kubeless scales better than Lean OpenWhisk on the constrained Raspberry Pi but still has about 20\% error rate even under medium load.
+\paragraph*{tinyFaaS vs. Kubeless}
+Kubeless scales better than Lean OpenWhisk on the constrained Raspberry Pi but still has about 20\% error rate even under medium load.
 At higher load levels, it also fails completely, i.e., does not return any results.
 Response latency for Kubeless is better than Lean OpenWhisk, yet on average still more than eight times as high as the latency of \textit{tinyFaaS}.
 We did expect Kubeless to be more powerful than Lean OpenWhisk based on~\cite{Palade2019-mo}, nonetheless Kubeless and Minikube do seem to introduce considerable overhead.
