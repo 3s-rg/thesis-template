@@ -9,6 +9,9 @@ The content of our template is only for illustrative purposes and does not neces
 We recommend writing in [Visual Studio Code](https://code.visualstudio.com/) using the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) and [LTex](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) extensions.
 For help writing the content of your thesis, please refer to our [thesis tips](https://github.com/pfandzelter/thesis-tips).
 
+For your presentation, we provide a PowerPoint template in `presentation.potx`.
+If this template does not meet your requirements (different chair, different university, LaTeX user, etc.), please refer to the official university templates before making adjustments.
+
 Please keep these recommendations in mind when writing your thesis and working with this template:
 
 1. There are few official rules for formatting your thesis at Technische Universität Berlin. Our template can serve as a guideline and help you get started, but you are free to make any changes you deem necessary.
