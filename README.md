@@ -7,7 +7,7 @@ The original template was provided by Felix Moebius, and we have extended it for
 The content of our template is only for illustrative purposes and does not necessarily reflect the necessary content, detail, structure, or length of a Master's or Bachelor's thesis!
 
 We recommend writing in [Visual Studio Code](https://code.visualstudio.com/) using the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) and [LTex](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) extensions.
-For help writing the content of your thesis, please refer to our [thesis tips](https://github.com/pfandzelter/thesis-tips).
+For help writing the content of your thesis, please refer to our [thesis tips](https://github.com/3s-rg/thesis-tips).
 
 For your presentation, we provide a PowerPoint template in `presentation.potx`.
 If this template does not meet your requirements (different chair, different university, LaTeX user, etc.), please refer to the official university templates before making adjustments.
