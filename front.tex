@@ -1,4 +1,5 @@
-{\sffamily\color{white}\raggedright\setlength{\parindent}{0cm}\large\onehalfspacing
+\linespread{1.2} % set spacing (for title page; we reset this later)
+{\sffamily\color{white}\raggedright\setlength{\parindent}{0cm}\large
 \AddToShipoutPicture*{
     \put(-4,0){
         \parbox[b][\paperheight]{\paperwidth}{%
@@ -40,6 +41,9 @@
 \thispagestyle{empty}
 \clearpage
 
+% reset spacing for the rest of the document
+\linespread{1}
+
 \vspace*{\fill}
 \begin{centering}
     {\huge\textbf{\projectTitle}\par}
@@ -63,20 +67,20 @@
 \thispagestyle{empty}
 \clearpage
 
-\vspace*{\fill}
+\vspace*{4cm}
 {
+    \section*{Eigenständigkeitserklärung}
     % briefly set the footnote to symbols for this disclaimer
     \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
     \noindent
-    \begin{otherlanguage}
-        {ngerman}
-        Hiermit versichere ich, dass ich die vorliegende Arbeit eigenständig ohne Hilfe Dritter und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe.
-        Alle Stellen die den benutzten Quellen und Hilfsmitteln unverändert oder sinngemäß entnommen sind, habe ich als solche kenntlich gemacht.
+    \begin{otherlanguage}{ngerman}
+        Hiermit versichere ich, dass ich die vorliegende Arbeit ohne Hilfe Dritter und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe.
+        Alle Stellen, die den benutzten Quellen und Hilfsmitteln wörtlich oder inhaltlich entnommen sind, habe ich als solche kenntlich gemacht.
 
-        Sofern generische KI-Tools verwendet wurden, habe ich Produktnamen, Hersteller, die jeweils verwendete Softwareversion und die jeweiligen Einsatzzwecke (z.~B.~sprachliche Überprüfung und Verbesserung der Texte, systematische Recherche) benannt.
+        Sofern KI-Tools verwendet wurden, habe ich Produktnamen, Hersteller, die jeweils verwendete Softwareversion und die Art der Nutzung (z.~B.~sprachliche Überprüfung und Verbesserung der Texte, systematische Recherche) benannt.
         Ich verantworte die Auswahl, die Übernahme und sämtliche Ergebnisse des von mir verwendeten KI-generierten Outputs vollumfänglich selbst.
 
-        Die Satzung zur Sicherung guter wissenschaftlicher Praxis an der TU Berlin vom 8. März 2017\footnote{\url{https://www.static.tu.berlin/fileadmin/www/10000060/FSC/Promotion___Habilitation/Dokumente/Grundsaetze_gute_wissenschaftliche_Praxis_2017.pdf}} habe ich zur Kenntnis genommen.
+        Die Satzung zur Sicherung guter wissenschaftlicher Praxis an der TU Berlin vom 15.\ Februar 2023\footnote{\url{https://www.static.tu.berlin/fileadmin/www/10002457/K3-AMBl/Amtsblatt_2023/Amtliches_Mitteilungsblatt_Nr._16_vom_30.05.2023.pdf}} habe ich zur Kenntnis genommen.
 
         Ich erkläre weiterhin, dass ich die Arbeit in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegt habe.
         \vskip 2cm
@@ -91,6 +95,5 @@
     \setcounter{footnote}{0}
 }
 
-\vspace*{\fill}
 \thispagestyle{empty}
 \clearpage

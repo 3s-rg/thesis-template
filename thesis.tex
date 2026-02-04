@@ -5,8 +5,8 @@
 
 \documentclass[a4paper, 11pt]{article}
 
-\usepackage[utf8x]{inputenc}
-\usepackage[T1]{fontenc}
+% \usepackage[utf8x]{inputenc}
+% \usepackage[T1]{fontenc}
 \usepackage{fix-cm}
 
 \usepackage[a4paper, margin=3cm]{geometry}
@@ -17,6 +17,7 @@
 \usepackage[all]{nowidow}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[hidelinks]{hyperref}
+\usepackage{fnpct}
 \usepackage{acronym}
 \usepackage{graphicx}
 \usepackage{url}
@@ -26,18 +27,27 @@
 \usepackage{transparent}
 \usepackage{eso-pic}
 \usepackage[section]{placeins}
-\usepackage{setspace}
 \usepackage{parskip}
 \usepackage{subcaption}
 
+% Format: section.figure
 \renewcommand\thefigure{%
 \thesection.\arabic{figure}}
+
+% Format: section.figure.subfigure
 \renewcommand\thesubfigure{%
 \thesection.\arabic{figure}.\arabic{subfigure}}
+
+% This command needs to be empty for correct labeling of subfigures when using cref
+\makeatletter
+\renewcommand{\p@subfigure}{}
+\makeatother
+
+% Format: section.table
 \renewcommand\thetable{%
 \thesection.\arabic{table}}
 
-\usepackage[main=english, ngerman]{babel}
+\usepackage[main=english,ngerman]{babel}
 
 % we use the cleveref package to refer to figures, sections, etc.
 % instead of "Figure~\ref{fig:example}", write only "\cref{fig:example}" and the word "Figure" (or table, etc) will be inserted normally
@@ -47,7 +57,7 @@
     maxbibnames=99,
     style=alphabetic,
     url=false,
-    backend=bibtex8,
+    backend=bibtex,
     sortcites=true,
 ]{biblatex}
 \addbibresource{refs.bib}
@@ -65,7 +75,7 @@
 \newcommand{\examinerb}{Prof.~Dr.~habil.~Odej Kao}
 \newcommand{\supervisor}{Tobias Pfandzelter}
 
-\newcommand{\projectYear}{2024}
+\newcommand{\projectYear}{2026}
 \newcommand{\facultyName}{Fakultät Elektrotechnik und Informatik}
 \newcommand{\departmentName}{Fachgebiet Scalable Software Systems}
 
@@ -103,19 +113,23 @@ We find that our platform can outperform Lean OpenWhisk in terms of latency and 
 \clearpage
 
 \tableofcontents
-
-\include{chapters/01_introduction.tex}
 \clearpage
-\include{chapters/02_background.tex}
+\input{chapters/01_introduction.tex}
 \clearpage
-\include{chapters/03_systemdesign.tex}
+\input{chapters/02_background.tex}
 \clearpage
-\include{chapters/04_evaluation.tex}
+\input{chapters/03_systemdesign.tex}
 \clearpage
-\include{chapters/05_relatedwork.tex}
+\input{chapters/04_evaluation.tex}
 \clearpage
-\include{chapters/06_conclusion.tex}
+\input{chapters/05_relatedwork.tex}
+\clearpage
+\input{chapters/06_conclusion.tex}
 
 \newpage
-\printbibliography
+\phantomsection
+\section*{References} % anchor and nameref are broken due to titlesec, so phantomsection and the explicit name are needed
+\addcontentsline{toc}{section}{References}
+
+\printbibliography[heading={none}]
 \end{document}
